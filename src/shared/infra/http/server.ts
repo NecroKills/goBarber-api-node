@@ -6,6 +6,7 @@ import '@shared/infra/typeorm';
 import 'reflect-metadata';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
+import '@shared/container';
 
 const app = express();
 
