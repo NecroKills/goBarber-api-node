@@ -6,7 +6,8 @@ const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
 // multer.diskStorage: Vai armazenar as imagens dentro da estrutura do app
 export default {
-  directory: tmpFolder,
+  tmpFolder,
+  uploadsFolder: path.resolve(tmpFolder, 'uploads'),
 
   storage: multer.diskStorage({
     destination: tmpFolder,
