@@ -69,4 +69,30 @@ describe('ResetPasswordService', () => {
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
+
+  it('should not be able to reset password if passed more than 2 hours', async () => {
+    const user = await fakeUsersRepository.create({
+      name: 'maycon da silva moreira',
+      email: 'maycondasilvamoreira@example.com',
+      password: '123456',
+    });
+
+    const { token } = await fakeUserTokensRepository.generate(user.id);
+
+    // mockImplementationOnce executa apentas uma vez.
+    // quando algum codigo depois do codigo abaixo executar a função Date.now,
+    // faz executar a minha função do meu teste dentro de uma função global do javascript
+    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
+      const customDate = new Date();
+      // Retorno customDate pegando o numero de horas e setando mais 3 horas.
+      return customDate.setHours(customDate.getHours() + 3);
+    });
+
+    await expect(
+      resetPassword.execute({
+        password: '123123',
+        token,
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
