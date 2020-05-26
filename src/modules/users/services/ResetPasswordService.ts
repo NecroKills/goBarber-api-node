@@ -1,6 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IUserTokenRepository from '@modules/users/repositories/IUserTokensRepository';
+import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 import AppError from '@shared/errors/AppError';
 // import AppError from '@shared/errors/AppError';
 // import User from '@modules/users/infra/typeorm/entities/User';
@@ -15,8 +16,11 @@ class ResetPasswordService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('UserTokenRepository')
+    @inject('hashProvider')
     private userTokenRepository: IUserTokenRepository,
+
+    @inject('UserTokenRepository')
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute({ token, password }: IRequest): Promise<void> {
@@ -31,7 +35,7 @@ class ResetPasswordService {
       throw new AppError('User does not exists.');
     }
 
-    user.password = password;
+    user.password = await this.hashProvider.generateHash(password);
 
     await this.usersRepository.save(user);
   }
