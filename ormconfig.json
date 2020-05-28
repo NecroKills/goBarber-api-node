@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "nnj3zs3g",
-  "database": "gostack_gobarber",
+  "database": "goBarber_goStack11",
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"
   ],

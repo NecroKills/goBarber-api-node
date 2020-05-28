@@ -13,6 +13,6 @@ container.registerSingleton<IStorageProvider>(
 // Foi feito diferente, pois com o Singleton não estava disparando o constructor
 // Criou uma instancia e com isso vai continuar executando apenas uma vez.
 container.registerInstance<IMailProvider>(
-  'EherealMailProvider',
+  'MailProvider',
   new EherealMailProvider(),
 );
