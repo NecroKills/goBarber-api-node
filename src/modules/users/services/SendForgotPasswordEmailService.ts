@@ -13,11 +13,11 @@ class SendForgotPasswordEmailService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('MailProvider')
-    private mailProvider: IMailProvider,
-
     @inject('UserTokenRepository')
     private userTokenRepository: IUserTokenRepository,
+
+    @inject('MailProvider')
+    private mailProvider: IMailProvider,
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {
