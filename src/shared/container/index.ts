@@ -9,11 +9,15 @@ import AppointmentsRepository from '@modules/appointments/infra/typeorm/reposito
 
 // Users
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import UsersRepository from '@modules/users/infra/typeorm/Repositories/UsersRepository';
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 // UsersToken
 import IUsersTokensRepository from '@modules/users/repositories/IUserTokensRepository';
-import UsersTokensRepository from '@modules/users/infra/typeorm/Repositories/UserTokensRepository';
+import UsersTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
+
+// notifications
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
+import NotificationsRepository from '@modules/notifications/infra/typeorm/repositories/NotificationsRepository';
 
 container.registerSingleton<IAppointmentsRepository>(
   'AppointmentsRepository',
@@ -28,4 +32,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IUsersTokensRepository>(
   'UsersTokensRepository',
   UsersTokensRepository,
+);
+
+container.registerSingleton<INotificationsRepository>(
+  'NotificationsRepository',
+  NotificationsRepository,
 );

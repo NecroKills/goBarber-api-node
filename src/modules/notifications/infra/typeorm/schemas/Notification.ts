@@ -9,6 +9,7 @@ import {
 
 @Entity('notifications')
 class Notification {
+  @ObjectIdColumn()
   id: ObjectID;
 
   @Column()
