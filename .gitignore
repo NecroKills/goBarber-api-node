@@ -4,7 +4,7 @@
 node_modules/
 build/
 ormconfig.json
-
+dist
 temp/
 
 tmp/*
